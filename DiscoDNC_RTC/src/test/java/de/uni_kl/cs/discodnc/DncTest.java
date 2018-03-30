@@ -28,13 +28,17 @@
 
 package de.uni_kl.cs.discodnc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Set;
+
 import de.uni_kl.cs.discodnc.nc.Analysis;
 import de.uni_kl.cs.discodnc.nc.Analysis.Analyses;
 import de.uni_kl.cs.discodnc.nc.AnalysisConfig;
 import de.uni_kl.cs.discodnc.nc.AnalysisConfig.ArrivalBoundMethod;
 import de.uni_kl.cs.discodnc.nc.AnalysisConfig.MuxDiscipline;
 import de.uni_kl.cs.discodnc.nc.AnalysisResults;
-import de.uni_kl.cs.discodnc.nc.CalculatorConfig;
 import de.uni_kl.cs.discodnc.nc.analyses.PmooAnalysis;
 import de.uni_kl.cs.discodnc.nc.analyses.SeparateFlowAnalysis;
 import de.uni_kl.cs.discodnc.nc.analyses.TotalFlowAnalysis;
@@ -44,11 +48,6 @@ import de.uni_kl.cs.discodnc.network.Network;
 import de.uni_kl.cs.discodnc.network.NetworkFactory;
 import de.uni_kl.cs.discodnc.network.Server;
 import de.uni_kl.cs.discodnc.numbers.Num;
-
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public abstract class DncTest {
 	protected NetworkFactory network_factory;
@@ -75,13 +74,13 @@ public abstract class DncTest {
 		printSetting();
 
 		if (test_config.enable_checks) {
-			CalculatorConfig.getInstance().enableAllChecks();
+			Calculator.getInstance().enableAllChecks();
 		} else {
-			CalculatorConfig.getInstance().disableAllChecks();
+			Calculator.getInstance().disableAllChecks();
 		}
 		
-		CalculatorConfig.getInstance().setCurveImpl(test_config.curve_implementation);
-		CalculatorConfig.getInstance().setNumImpl(test_config.num_implementation);
+		Calculator.getInstance().setCurveBackend(test_config.curve_implementation);
+		Calculator.getInstance().setNumImpl(test_config.num_implementation);
 		
 		// reinitialize the network and the bounds
 		network_factory.reinitializeCurves();
@@ -95,7 +94,7 @@ public abstract class DncTest {
 			System.out.println("--------------------------------------------------------------");
 			System.out.println();
 			System.out.println("Number representation:\t" + test_config.getNumImpl().toString());
-			System.out.println("Curve representation:\t" + test_config.getCurveImpl().toString());
+			System.out.println("Curve representation:\t" + test_config.getCurveBackend().toString());
 			System.out.println("Arrival Boundings:\t" + test_config.arrivalBoundMethods().toString());
 			System.out
 					.println("Remove duplicate ABs:\t" + Boolean.toString(test_config.removeDuplicateArrivalBounds()));

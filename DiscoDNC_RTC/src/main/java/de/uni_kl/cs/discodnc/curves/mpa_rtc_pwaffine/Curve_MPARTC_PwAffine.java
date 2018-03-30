@@ -33,7 +33,7 @@ import ch.ethz.rtc.kernel.SegmentList;
 
 import de.uni_kl.cs.discodnc.curves.CurvePwAffine;
 import de.uni_kl.cs.discodnc.curves.LinearSegment;
-import de.uni_kl.cs.discodnc.nc.CalculatorConfig;
+import de.uni_kl.cs.discodnc.Calculator;
 import de.uni_kl.cs.discodnc.numbers.Num;
 import de.uni_kl.cs.discodnc.numbers.implementations.RealDoublePrecision;
 
@@ -617,7 +617,7 @@ public class Curve_MPARTC_PwAffine implements CurvePwAffine {
 			return;
 		}
 
-		if (CalculatorConfig.getInstance().exec_service_curve_checks() && !this.isConvex()) {
+		if (Calculator.getInstance().exec_service_curve_checks() && !this.isConvex()) {
 			if (this.equals(this.createZeroDelayInfiniteBurst())) {
 				rate_latencies = new ArrayList<Curve_MPARTC_PwAffine>();
 				rate_latencies.add(this.createRateLatency(Num.getFactory().createPositiveInfinity(),
@@ -672,7 +672,7 @@ public class Curve_MPARTC_PwAffine implements CurvePwAffine {
 			// return;
 		}
 
-		if (CalculatorConfig.getInstance().exec_arrival_curve_checks() && !this.isConcave()) {
+		if (Calculator.getInstance().exec_arrival_curve_checks() && !this.isConcave()) {
 			throw new RuntimeException("Can only decompose concave arrival curves into token buckets.");
 		}
 

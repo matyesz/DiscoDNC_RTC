@@ -28,7 +28,6 @@
 package de.uni_kl.cs.discodnc.curves.mpa_rtc_pwaffine;
 
 import ch.ethz.rtc.kernel.Segment;
-
 import de.uni_kl.cs.discodnc.curves.LinearSegment;
 import de.uni_kl.cs.discodnc.numbers.Num;
 
@@ -150,4 +149,23 @@ public class LinearSegment_MPARTC_PwAffine implements LinearSegment {
     public int hashCode() {
         return rtc_segment.hashCode();
     }
+    
+    public static LinearSegment.Builder getBuilder() {
+    	return new LinearSegment_MPARTC_PwAffine_builder();
+    }
+    
+    private static class LinearSegment_MPARTC_PwAffine_builder implements LinearSegment.Builder {
+
+		@Override
+		public LinearSegment createLinearSegment(Num x, Num y, Num grad, boolean leftopen) {
+			return new LinearSegment_MPARTC_PwAffine(x.doubleValue(), y.doubleValue(), grad.doubleValue());
+		}
+
+		@Override
+		public LinearSegment createHorizontalLine(double y) {
+				return new LinearSegment_MPARTC_PwAffine(0.0, y, 0.0);
+	    }
+    	
+    }
+    
 }

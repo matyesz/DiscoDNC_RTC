@@ -27,6 +27,9 @@
 
 package de.uni_kl.cs.discodnc.minplus;
 
+import java.util.HashSet;
+import java.util.Set;
+
 // Due to name collisions, these classes are not imported,
 // they are referenced by their fully qualified names.
 //import ch.ethz.rtc.kernel.Curve;
@@ -35,21 +38,11 @@ package de.uni_kl.cs.discodnc.minplus;
 import ch.ethz.rtc.kernel.CurveMath;
 import ch.ethz.rtc.kernel.Segment;
 import ch.ethz.rtc.kernel.SegmentList;
-
 import de.uni_kl.cs.discodnc.curves.ArrivalCurve;
-import de.uni_kl.cs.discodnc.curves.Curve;
 import de.uni_kl.cs.discodnc.curves.CurvePwAffine;
 import de.uni_kl.cs.discodnc.curves.MaxServiceCurve;
 import de.uni_kl.cs.discodnc.curves.ServiceCurve;
 import de.uni_kl.cs.discodnc.curves.mpa_rtc_pwaffine.Curve_MPARTC_PwAffine;
-import de.uni_kl.cs.discodnc.minplus.dnc.Convolution_DNC;
-import de.uni_kl.cs.discodnc.minplus.dnc.Deconvolution_DNC;
-import de.uni_kl.cs.discodnc.nc.CalculatorConfig;
-import de.uni_kl.cs.discodnc.nc.CalculatorConfig.CurveImpl;
-import de.uni_kl.cs.discodnc.nc.CalculatorConfig.OperationImpl;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public enum MinPlus_MPA_RTC implements MinPlus {
 
