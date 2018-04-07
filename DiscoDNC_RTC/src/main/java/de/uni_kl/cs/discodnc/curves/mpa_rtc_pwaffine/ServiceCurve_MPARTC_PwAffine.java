@@ -1,7 +1,7 @@
 /*
- * This file is part of the Disco Deterministic Network Calculator v2.4.0 "Chimera".
+ * This file is part of the Disco Deterministic Network Calculator.
  *
- * Copyright (C) 2017, 2018 The DiscoDNC contributors
+ * Copyright (C) 2017+ The DiscoDNC contributors
  *
  * disco | Distributed Computer Systems Lab
  * University of Kaiserslautern, Germany
@@ -29,8 +29,6 @@ package de.uni_kl.cs.discodnc.curves.mpa_rtc_pwaffine;
 
 import ch.ethz.rtc.kernel.Curve;
 import ch.ethz.rtc.kernel.SegmentList;
-
-import de.uni_kl.cs.discodnc.curves.CurvePwAffine;
 import de.uni_kl.cs.discodnc.curves.ServiceCurve;
 
 public class ServiceCurve_MPARTC_PwAffine extends Curve_MPARTC_PwAffine implements ServiceCurve {
@@ -45,7 +43,7 @@ public class ServiceCurve_MPARTC_PwAffine extends Curve_MPARTC_PwAffine implemen
         super(segment_count);
     }
 
-    public ServiceCurve_MPARTC_PwAffine(CurvePwAffine curve) {
+    public ServiceCurve_MPARTC_PwAffine(de.uni_kl.cs.discodnc.curves.Curve curve) {
         copy(curve);
     }
 

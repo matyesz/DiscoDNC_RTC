@@ -1,8 +1,8 @@
 /*
- * This file is part of the Disco Deterministic Network Calculator v2.4.0 "Chimera".
+ * This file is part of the Disco Deterministic Network Calculator.
  *
- * Copyright (C) 2018 Steffen Bondorf
- * Copyright (C) 2017, 2018 The DiscoDNC contributors
+ * Copyright (C) 2017 - 2018 Steffen Bondorf
+ * Copyright (C) 2017+ The DiscoDNC contributors
  *
  * Distributed Computer Systems (DISCO) Lab
  * University of Kaiserslautern, Germany
@@ -28,21 +28,22 @@
 
 package de.uni_kl.cs.discodnc;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.stream.Stream;
+import de.uni_kl.cs.discodnc.nc.AnalysisConfig.ArrivalBoundMethod;
+import de.uni_kl.cs.discodnc.nc.CurveBackend_MPA_RTC;
+import de.uni_kl.cs.discodnc.CurveBackend;
+import de.uni_kl.cs.discodnc.Calculator.NumImpl;
+//import CalculatorConfig.OperationImpl;
+import de.uni_kl.cs.discodnc.nc.AnalysisConfig;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 
-import de.uni_kl.cs.discodnc.Calculator.NumImpl;
-//import CalculatorConfig.OperationImpl;
-import de.uni_kl.cs.discodnc.nc.AnalysisConfig;
-import de.uni_kl.cs.discodnc.nc.AnalysisConfig.ArrivalBoundMethod;
-import de.uni_kl.cs.discodnc.nc.CurveBackend_MPA_RTC;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class DncTestArguments implements ArgumentsProvider {
 
@@ -61,9 +62,8 @@ public class DncTestArguments implements ArgumentsProvider {
 		nums.add(NumImpl.RATIONAL_BIGINTEGER);
 
 		Set<CurveBackend> curves = new HashSet<CurveBackend>();
-		curves.add(CurveBackend_DNC.DNC);
 		curves.add(CurveBackend_MPA_RTC.MPA_RTC);
-
+		
 //		Set<OperationImpl> operations = new HashSet<OperationImpl>();
 //		operations.add(OperationImpl.DNC);
 //		operations.add(OperationImpl.NATIVE);
@@ -110,7 +110,7 @@ public class DncTestArguments implements ArgumentsProvider {
 		triplet_arbMux.add(ArrivalBoundMethod.PMOO);
 
 		// Parameter configurations for single arrival bounding tests
-		// AB, remove duplicate ABs, tbrl opt convolution, tbrl opt deconvolution, mux,
+		// AB, convolve alternative ABs, tbrl opt convolution, tbrl opt deconvolution, mux,
 		// global mux def, number class to use, curve class to use, operations class to
 		// use
 		for (CurveBackend curve : curves) {

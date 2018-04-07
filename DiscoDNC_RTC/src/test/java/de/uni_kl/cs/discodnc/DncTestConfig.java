@@ -1,8 +1,8 @@
 /*
- * This file is part of the Disco Deterministic Network Calculator v2.4.0 "Chimera".
+ * This file is part of the Disco Deterministic Network Calculator.
  *
  * Copyright (C) 2013 - 2018 Steffen Bondorf
- * Copyright (C) 2017, 2018 The DiscoDNC contributors
+ * Copyright (C) 2017+ The DiscoDNC contributors
  *
  * Distributed Computer Systems (DISCO) Lab
  * University of Kaiserslautern, Germany
@@ -28,10 +28,11 @@
 
 package de.uni_kl.cs.discodnc;
 
-import java.util.Set;
-
+import de.uni_kl.cs.discodnc.CurveBackend;
 import de.uni_kl.cs.discodnc.Calculator.NumImpl;
 import de.uni_kl.cs.discodnc.nc.AnalysisConfig;
+
+import java.util.Set;
 
 public class DncTestConfig extends AnalysisConfig {
 	// Functional test specific parameters
@@ -48,14 +49,14 @@ public class DncTestConfig extends AnalysisConfig {
 	private DncTestConfig() {
 	}
 
-	public DncTestConfig(Set<ArrivalBoundMethod> arrival_bound_methods, boolean remove_duplicate_arrival_bounds,
+	public DncTestConfig(Set<ArrivalBoundMethod> arrival_bound_methods, boolean convolve_alternative_arrival_bounds,
 			boolean tbrl_convolution, boolean tbrl_deconvolution, AnalysisConfig.Multiplexing mux_discipline,
 			boolean define_multiplexing_globally, NumImpl numbers, CurveBackend curves ) {
 
 		super(AnalysisConfig.MuxDiscipline.GLOBAL_ARBITRARY, // Not used, no influence yet.
 				GammaFlag.GLOBALLY_OFF, // Not used, no influence yet.
 				GammaFlag.GLOBALLY_OFF, // Not used, no influence yet.
-				arrival_bound_methods, remove_duplicate_arrival_bounds, tbrl_convolution, tbrl_deconvolution, false);
+				arrival_bound_methods, convolve_alternative_arrival_bounds, tbrl_convolution, tbrl_deconvolution, false);
 
 		this.mux_discipline = mux_discipline;
 		this.define_multiplexing_globally = define_multiplexing_globally;
@@ -82,14 +83,14 @@ public class DncTestConfig extends AnalysisConfig {
 
 	@Override
 	public String toString() {
-		// AB, remove duplicate ABs, tbrl opt convolution, tbrl opt deconvolusion, mux,
+		// AB, convolve alternative ABs, tbrl opt convolution, tbrl opt deconvolusion, mux,
 		// global mux def, numbers, curves
 		StringBuffer func_test_str = new StringBuffer();
 
 		func_test_str.append(arrivalBoundMethods().toString());
 
-		if (removeDuplicateArrivalBounds()) {
-			func_test_str.append(", " + "rm dupl ABs");
+		if (convolveAlternativeArrivalBounds()) {
+			func_test_str.append(", " + "conv alt ABs");
 		}
 		if (tbrlConvolution()) {
 			func_test_str.append(", " + "TbRl Conv");

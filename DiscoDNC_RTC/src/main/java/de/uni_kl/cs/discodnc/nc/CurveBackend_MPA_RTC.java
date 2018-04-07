@@ -15,7 +15,7 @@ public enum CurveBackend_MPA_RTC implements CurveBackend {
 
 	@Override
 	public MinPlus getMinPlus() {
-		return MinPlus_MPA_RTC.MinPlus_MPA_RTC;
+		return MinPlus_MPA_RTC.MINPLUS_MPA_RTC;
 	}
 
 	@Override
